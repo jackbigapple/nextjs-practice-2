@@ -1,4 +1,6 @@
 // import { useEffect, useState } from "react";
+import Head from "next/head";
+import { Fragment } from "react";
 import MeetupList from "../components/meetups/MeetupList";
 
 const DUMMY_MEETUPS = [
@@ -52,7 +54,15 @@ function HomePage(props) {
   //     setLoadedMeetup(DUMMY_MEETUPS);
   //   }, []);
 
-  return <MeetupList meetups={props.meetups} />;
+  return (
+    <Fragment>
+      <Head>
+        <title>React Meetup</title>
+        <meta name="description" content="this is page description"/>
+      </Head>
+      <MeetupList meetups={props.meetups} />
+    </Fragment>
+  );
 }
 
 // getStaticProps 會在 generate 時取得資料將資料注入props，可設定 revalidate 時間來控制多久更新一次。
@@ -62,7 +72,7 @@ export async function getStaticProps() {
     props: {
       meetups: DUMMY_MEETUPS,
     },
-    revalidate: 10  //在Server端多久會 regenerate
+    revalidate: 10, //在Server端多久會 regenerate
   };
 }
 
