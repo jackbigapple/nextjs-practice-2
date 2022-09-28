@@ -59,8 +59,9 @@ export async function getStaticProps() {
   // fetch data from an API
   return {
     props: {
-      meetups: DUMMY_UMEETUPS,
+      meetups: DUMMY_MEETUPS,
     },
+    revalidate: 10  //在Server端多久會 regenerate
   };
 }
 
